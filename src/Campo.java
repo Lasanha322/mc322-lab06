@@ -1,33 +1,33 @@
 public class Campo {
-	int x;
-	int y;
-	boolean peca; //false se for um espaco vazio, true se for um espaco pra peca
-	boolean comida; //false quanto a peça nesse espaco nao foi comida, true quando foi comida
-	boolean cor;// false se for branca B, true se for preta P
+	private int x;
+	private int y;
+	private boolean peca; //false se for um espaco vazio, true se for um espaco pra peca
+	private boolean comida; //false quanto a peça nesse espaco nao foi comida, true quando foi comida
+	private boolean preta;// false se for branca B, true se for preta P
 	
-	Campo (int x, int y, boolean peca,boolean cor) {
+	public Campo (int x, int y, boolean peca,boolean preta) {
 		this.x = x;
 		this.y = y;
 		this.peca = peca;
 		this.comida = false;
-		this.cor = cor;
+		this.preta = preta;
 	}
 	
-	void colocarPeca(boolean cor) {
+	public void colocarPeca(boolean preta) {
 		peca = true;
 		comida = false;
-		this.cor = cor;
+		this.preta = preta;
 	}
 	
-	void comerPeca() {
+	public void comerPeca() {
 		comida = true;
 	}
 	
-	void mostrarCampo() {
+	public void mostrarCampo() {
 		if (peca == false) {
 			System.out.print("  ");
 		} else if (comida == false) {
-			if(cor == false) {
+			if(preta == false) {
 				System.out.print("B ");
 			}
 			else {
