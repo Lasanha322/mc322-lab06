@@ -3,60 +3,48 @@ public class Tabuleiro {
 	int n;
 	
 	void gerarTabuleiro() {
-		this.n = 7;
+		this.n = 8;
 		campos = new Campo[n][n];
 		
-		//Começamos gerando o espaço total
+		//ComeÃ§amos gerando o espaÃ§o total
 		for (int i = 0; i < n; i++) {
 			for (int j = 0; j < n; j++) {
-				campos[i][j] = new Campo(i, j, false);
+				campos[i][j] = new Campo(i, j, false, false);
 			}
 		}
 		
-		//Agora incluimos as pecas
-		for (int i = 2; i < 5; i++) {
+		//Incluimos as peÃ§as pretas
+		for (int i = 0; i < 3; i++) {
 			for (int j = 0; j < n; j++) {
-				campos[i][j].colocarPeca();
+				if ((i+j)%2 == 1)
+					campos[i][j].colocarPeca(true);
 			}
 		}
-		for (int j = 2; j < 5; j++) {
-			for (int i = 0; i < n; i++) {
-				campos[i][j].colocarPeca();
+		
+		//Incluimos as peÃ§as brancas
+		for (int i = 5; i < 8; i++) {
+			for (int j = 0; j < n; j++) {
+				if ((i+j)%2 == 1)
+					campos[i][j].colocarPeca(false);
 			}
 		}
-		//Tiramos a peca do centro
-		campos[3][3].comerPeca();
 	}
 	
 	void aplicarMovimento(String commands) {
 		//Processamos o comando de entrada
 		char[] command = commands.toCharArray();
-		int sourceX, sourceY, targetX, targetY, comidaX, comidaY;
+		int sourceX, sourceY, targetX, targetY;
+		boolean preta;
 		
-		sourceX = 7 - (command[1] - '0');
-		targetX = 7 - (command[4] - '0');
-		if (targetX == sourceX)
-			comidaX = targetX;
-		else if (targetX > sourceX)
-			comidaX = (targetX - sourceX)/2 + sourceX;
-		else
-			comidaX = (sourceX - targetX)/2 + targetX;
+		sourceX = n - (command[1] - '0');
+		targetX = n - (command[4] - '0');
 		
 		sourceY = command[0] - 'a';
 		targetY = command[3] - 'a';
-
-		if (targetY == sourceY)
-			comidaY = targetY;
-		else if (targetY > sourceY)
-			comidaY = (targetY - sourceY)/2 + sourceY;
-		else
-			comidaY = (sourceY - targetY)/2 + targetY;
 		
-		//Com a posicao de tudo definida, aplicamos as operacoes de comer ou colocar as pecas
+		preta = campos[sourceX][sourceY].getPreta();
 		campos[sourceX][sourceY].comerPeca();
-		campos[targetX][targetY].colocarPeca();
-		campos[comidaX][comidaY].comerPeca();
-		
+		campos[targetX][targetY].colocarPeca(preta);		
 	}
 	
 	void imprimirTabuleiro() {
@@ -69,8 +57,8 @@ public class Tabuleiro {
 			}
 			System.out.println();
 		}
-		//Na última linha, imprimimos as letras
-		System.out.println("  a b c d e f g ");
+		//Na Ãºltima linha, imprimimos as letras
+		System.out.println("  a b c d e f g h ");
 		System.out.println();
 	}	
 }
