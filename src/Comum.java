@@ -22,11 +22,9 @@ public class Comum extends Campo {
 		}
 		return muv;
 	}
-	public boolean verificaMovimento (int x, int y, Campo [][] camp, int fator) {
+	public boolean verificaMovimento (int x, int y, Campo [][] camp, int lado) {
 		boolean muv=false;
-		int lado ;
 		// verifica se movimento de 1 casa é verdadeiro
-		lado = 1*fator;
 		if(y==(this.y+lado)) {
 			if(x==(this.x+1) || x==(this.x-1) ) {
 				if(camp[x][y].comida == true) {
