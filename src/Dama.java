@@ -59,11 +59,6 @@ public class Dama extends Campo {
 						if(this.x+(fatorX+somadorX)==x && this.y+(fatorY+somadorY) ==y) {
 							muv=true;
 						}
-						//se este não for continua a verificação de jogada para o proximo campo
-						//*******este é o caso que não sei se continua depois de comer uma peça ou se para
-						else {
-							verificaMovimento(x,y,camp,fatorX+somadorX,fatorY+somadorY);
-						}
 					}
 				}
 			}
