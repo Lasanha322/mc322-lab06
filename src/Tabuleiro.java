@@ -1,6 +1,6 @@
 public class Tabuleiro {
-	Campo[][] campos;
-	int n;
+	protected Campo[][] campos;
+	protected int n;
 	
 	void gerarTabuleiro() {
 		this.n = 8;
@@ -47,10 +47,9 @@ public class Tabuleiro {
 		targetY = command[3] - 'a';
 		if(campos[sourceX][sourceY].getComum() != null && campos[sourceX][sourceY].comum.movimento(targetX, targetY, campos)) {
 			campos[targetX][targetY].colocarPeca(campos[sourceX][sourceY].getComum());
-			campos[sourceX][sourceY].comerPeca();	
+			campos[sourceX][sourceY].comerPeca();
+			campos[targetX][targetY].comum.setCoord(targetX, targetY);
 		}
-		//campos[targetX][targetY].colocarPeca(campos[sourceX][sourceY].getComum());
-		//campos[sourceX][sourceY].comerPeca();
 	}
 	
 	void imprimirTabuleiro() {

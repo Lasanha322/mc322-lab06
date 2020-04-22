@@ -6,23 +6,25 @@ public class Comum extends Campo {
 		this.preta = preta;
 	}
 	
-	public boolean movimento(int x, int y, Campo [][] camp) {
+	public void setCoord(int x, int y) {
+		this.x = x;
+		this.y = y;
+	}
+	
+	public boolean movimento(int x, int y, Campo[][] camp) {
 		boolean muv = false;
 		int fator = 0;
 		
 		if (camp[this.x][this.y].getComum() != null) {
 			//Agora, a gente verifica se a peca sobe ou desce
-			System.out.println(muv); 
-			if(getPreta() == false) {
+			if (getPreta() == false) {
 				fator = 1;
 				muv = verificaMovimento (x, y, camp, fator);
-			}
-			else {
+			} else {
 				fator = -1;
 				muv = verificaMovimento (x, y, camp, fator);
 			}
 		}
-		System.out.println(muv);
 		return muv;
 	}
 	
