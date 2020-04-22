@@ -3,11 +3,13 @@ public class Campo {
 	protected int y;
 	protected boolean preta;// false se for branca B, true se for preta P
 	protected Comum comum;
+	protected Dama dama;
 	
 	public Campo (int x, int y) {
 		this.x = x;
 		this.y = y;
 		comum = null;
+		dama = null;
 	}
 	
 	public boolean getPreta() {
