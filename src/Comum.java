@@ -17,7 +17,7 @@ public class Comum extends Campo {
 		
 		if (camp[this.x][this.y].getComum() != null) {
 			//Agora, a gente verifica se a peca sobe ou desce
-			if (getPreta() == false) {
+			if (getPreta() == true) {
 				fator = 1;
 				muv = verificaMovimento (x, y, camp, fator);
 			} else {
@@ -30,10 +30,9 @@ public class Comum extends Campo {
 	
 	public boolean verificaMovimento (int x, int y, Campo [][] camp, int lado) {
 		boolean muv = false;
-		
 		// verifica se movimento de 1 casa é verdadeiro
-		if(y==(this.y+lado)) {
-			if(x==(this.x+1) || x==(this.x-1) ) {
+		if(x==(this.x+lado)) {
+			if(y==(this.y+1) || y==(this.y-1) ) {
 				if(camp[x][y].getComum() == null) {
 					muv=true;
 				}
@@ -41,15 +40,15 @@ public class Comum extends Campo {
 		}
 		
 		//verifica se o movimento de 2 espaço é possivel e se entre eles tem uma peça != da propria			
-		if(y==(this.y+(2*lado))) {
-			if(x==(this.x+2) ) {
+		if(x==(this.x+(2*lado))) {
+			if(y==(this.y+2) ) {
 				if(camp[x][y].getComum() == null) {
 					if(camp[this.x+1][this.y+lado].getComum() != null && camp[this.x+1][this.y+lado].preta != preta){
 						muv=true;
 					}
 				}
 			}
-			if(x==(this.x-2) ) {
+			if(y==(this.y-2) ) {
 				if(camp[x][y].getComum() == null) {
 					if(camp[this.x-1][this.y+lado].getComum() != null && camp[this.x-1][this.y+lado].preta != preta){
 						muv=true;
