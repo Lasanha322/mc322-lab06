@@ -43,14 +43,14 @@ public class Comum extends Campo {
 		if(x==(this.x+(2*lado))) {
 			if(y==(this.y+2) ) {
 				if(camp[x][y].getComum() == null) {
-					if(camp[this.x+1][this.y+lado].getComum() != null && camp[this.x+1][this.y+lado].preta != preta){
+					if(camp[this.x+lado][this.y+1].getComum() != null && camp[this.x+lado][this.y+1].preta != preta){
 						muv=true;
 					}
 				}
 			}
 			if(y==(this.y-2) ) {
 				if(camp[x][y].getComum() == null) {
-					if(camp[this.x-1][this.y+lado].getComum() != null && camp[this.x-1][this.y+lado].preta != preta){
+					if(camp[this.x+lado][this.y-1].getComum() != null && camp[this.x+lado][this.y-1].preta != preta){
 						muv=true;
 					}	
 				}
