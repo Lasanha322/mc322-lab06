@@ -50,21 +50,19 @@ public class Tabuleiro {
 			campos[sourceX][sourceY].comerPeca();
 			campos[targetX][targetY].comum.setCoord(targetX, targetY);
 			
-			verificaPecaComer (targetX, targetY,sourceX,  sourceY);
+			verificaPecaComer(targetX, targetY, sourceX, sourceY);
 		}
 	}
+	
 	// verifica se tem uma peça a ser retirada do tabuleiro em uma jogada
-	void verificaPecaComer (int targetX, int targetY,int sourceX, int sourceY) {
+	void verificaPecaComer (int targetX, int targetY, int sourceX, int sourceY) {
 		if( targetX-sourceX == -2 && targetY-sourceY == -2) {
 			campos[targetX+1][targetY+1].comerPeca();
-		}
-		else if( targetX-sourceX == -2 && targetY-sourceY == 2) {
+		} else if( targetX-sourceX == -2 && targetY-sourceY == 2) {
 			campos[targetX+1][targetY-1].comerPeca();
-		}
-		else if( targetX-sourceX == 2 && targetY-sourceY == 2) {
+		} else if( targetX-sourceX == 2 && targetY-sourceY == 2) {
 			campos[targetX-1][targetY-1].comerPeca();
-		}
-		else if( targetX-sourceX == 2 && targetY-sourceY == -2) {
+		} else if( targetX-sourceX == 2 && targetY-sourceY == -2) {
 			campos[targetX-1][targetY+1].comerPeca();
 		}
 	}
@@ -79,7 +77,7 @@ public class Tabuleiro {
 			}
 			System.out.println();
 		}
-		//Na última linha, imprimimos as letras
+		//Na ultima linha, imprimimos as letras
 		System.out.println("  a b c d e f g h ");
 		System.out.println();
 	}	

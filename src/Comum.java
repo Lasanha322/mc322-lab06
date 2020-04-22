@@ -30,7 +30,7 @@ public class Comum extends Campo {
 	
 	public boolean verificaMovimento (int x, int y, Campo [][] camp, int lado) {
 		boolean muv = false;
-		// verifica se movimento de 1 casa Ã© verdadeiro
+		// verifica se movimento de 1 casa é verdadeiro
 		if(x==(this.x+lado)) {
 			if(y==(this.y+1) || y==(this.y-1) ) {
 				if(camp[x][y].getComum() == null) {
@@ -39,18 +39,18 @@ public class Comum extends Campo {
 			}
 		}
 		
-		//verifica se o movimento de 2 espaÃ§o Ã© possivel e se entre eles tem uma peÃ§a != da propria			
+		//verifica se o movimento de 2 espaço é possivel e se entre eles tem uma peça != da propria			
 		if(x==(this.x+(2*lado))) {
 			if(y==(this.y+2) ) {
 				if(camp[x][y].getComum() == null) {
-					if(camp[this.x+lado][this.y+1].getComum() != null && camp[this.x+lado][this.y+1].preta != preta){
+					if(camp[this.x+lado][this.y+1].getComum() != null && camp[this.x+lado][this.y+1].comum.getPreta() != preta){
 						muv=true;
 					}
 				}
 			}
 			if(y==(this.y-2) ) {
 				if(camp[x][y].getComum() == null) {
-					if(camp[this.x+lado][this.y-1].getComum() != null && camp[this.x+lado][this.y-1].preta != preta){
+					if(camp[this.x+lado][this.y-1].getComum() != null && camp[this.x+lado][this.y-1].comum.getPreta() != preta){
 						muv=true;
 					}	
 				}
