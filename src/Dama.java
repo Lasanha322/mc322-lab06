@@ -1,3 +1,4 @@
+
 public class Dama extends Campo {
 
 	public Dama(int x, int y, boolean preta) {
@@ -12,25 +13,25 @@ public class Dama extends Campo {
 		//definindo a direção do movimento
 		//ideia de quadrante, pense que a peça esta no centro e 
 		//o x e y vão indicar para que direção esta indo a peça
-		if(x > this.x) {
-			if(y > this.y) {
+		if(y > this.y) {
+			if(x > this.x) {
 				fatorX=1;
 				fatorY=1;
 				muv = verificaMovimento(x,y,camp,fatorX,fatorY);
 			}
-			if(y<this.y) {
-				fatorX=1;
-				fatorY=-1;
-				muv = verificaMovimento(x,y,camp,fatorX,fatorY);
-			}
-		}
-		if(x < this.x) {
-			if(y > this.y) {
+			if(x<this.x) {
 				fatorX=-1;
 				fatorY=1;
 				muv = verificaMovimento(x,y,camp,fatorX,fatorY);
 			}
-			if(y < this.y) {
+		}
+		if(y < this.y) {
+			if(x > this.x) {
+				fatorX=1;
+				fatorY=-1;
+				muv = verificaMovimento(x,y,camp,fatorX,fatorY);
+			}
+			if(x < this.x) {
 				fatorX=-1;
 				fatorY=-1;
 				muv = verificaMovimento(x,y,camp,fatorX,fatorY);
@@ -41,19 +42,25 @@ public class Dama extends Campo {
 	public boolean verificaMovimento (int x, int y, Campo [][] camp, int fatorX, int fatorY) {
 		boolean muv = false;
 		int somadorX, somadorY;
-		somadorX = fatorX/fatorX;//somador para ir para o proximo campo
-		somadorY=fatorY/fatorY;
+		if(fatorX<0) {
+			somadorX = -1*(fatorX/fatorX);//somador para ir para o proximo campo	
+		}else somadorX = fatorX/fatorX;
+		
+		if(fatorY<0){
+			somadorY= -1*(fatorY/fatorY);
+		}else somadorY = fatorY/fatorY;
+		
 		//verifica cada campo ate chegar na posição final desejada
 		while(x!=fatorX && y!=fatorY ) {
 			// Se o a proximo campo estiver vazio ele chama a função novamente
-			if(camp[this.x+(fatorX)][this.y+(fatorY)].comida==true) {
+			if(camp[this.x+(fatorX)][this.y+(fatorY)].getComum()==null) {
 				verificaMovimento(x,y,camp,fatorX+somadorX,fatorY+somadorY);
 			}
 			//se não estiver vazio verifica se é peca adversaria
 			else {
 				if(camp[this.x+(fatorX)][this.y+(fatorY)].preta!=preta) {
 					//se for peca adversaria verica se o campo apos o adversario esta vazio
-					if(camp[this.x+(fatorX+somadorX)][this.y+(fatorY+somadorY)].comida==true) {
+					if(camp[this.x+(fatorX+somadorX)][this.y+(fatorY+somadorY)].getComum()==null) {
 						//se este campo for destido final retorna jogada valida
 						if(this.x+(fatorX+somadorX)==x && this.y+(fatorY+somadorY) ==y) {
 							muv=true;
@@ -65,7 +72,7 @@ public class Dama extends Campo {
 		//se apoś passar por todos os campos e a posição destino ser igual a 
 		//verificada, verificasse se o espaço esta disponivel
 		if(x==fatorX && y==fatorY){
-			if(camp[x][y].comida == true) {
+			if(camp[x][y].getComum()==null) {
 				muv=true;
 			}
 		
