@@ -1,11 +1,10 @@
-package lab06;
-
 public class Dama extends Campo {
 
-	public Dama(int x, int y, boolean peca, boolean preta) {
-		super(x, y, peca, preta);
-		// TODO Auto-generated constructor stub
+	public Dama(int x, int y, boolean preta) {
+		super(x, y);
+		this.preta = preta;
 	}
+	
 	public boolean MovimentoDama(int x, int y, Campo [][] camp) {
 		boolean muv = false;
 		int fatorX;//direção em x

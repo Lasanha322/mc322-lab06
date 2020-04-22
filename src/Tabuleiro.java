@@ -5,27 +5,32 @@ public class Tabuleiro {
 	void gerarTabuleiro() {
 		this.n = 8;
 		campos = new Campo[n][n];
+		Comum comum;
 		
 		//Começamos gerando o espaço total
 		for (int i = 0; i < n; i++) {
 			for (int j = 0; j < n; j++) {
-				campos[i][j] = new Campo(i, j, false, false);
+				campos[i][j] = new Campo(i, j);
 			}
 		}
 		
 		//Incluimos as peças pretas
 		for (int i = 0; i < 3; i++) {
 			for (int j = 0; j < n; j++) {
-				if ((i+j)%2 == 1)
-					campos[i][j].colocarPeca(true);
+				if ((i+j)%2 == 1) {
+					comum = new Comum(i, j, true);
+					campos[i][j].colocarPeca(comum);
+				}
 			}
 		}
 		
 		//Incluimos as peças brancas
 		for (int i = 5; i < 8; i++) {
 			for (int j = 0; j < n; j++) {
-				if ((i+j)%2 == 1)
-					campos[i][j].colocarPeca(false);
+				if ((i+j)%2 == 1) {
+					comum = new Comum(i, j, false);
+					campos[i][j].colocarPeca(comum);
+				}
 			}
 		}
 	}
@@ -34,17 +39,18 @@ public class Tabuleiro {
 		//Processamos o comando de entrada
 		char[] command = commands.toCharArray();
 		int sourceX, sourceY, targetX, targetY;
-		boolean preta;
 		
 		sourceX = n - (command[1] - '0');
 		targetX = n - (command[4] - '0');
 		
 		sourceY = command[0] - 'a';
 		targetY = command[3] - 'a';
-		
-		preta = campos[sourceX][sourceY].getPreta();
-		campos[sourceX][sourceY].comerPeca();
-		campos[targetX][targetY].colocarPeca(preta);		
+		if(campos[sourceX][sourceY].getComum() != null && campos[sourceX][sourceY].comum.movimento(targetX, targetY, campos)) {
+			campos[targetX][targetY].colocarPeca(campos[sourceX][sourceY].getComum());
+			campos[sourceX][sourceY].comerPeca();	
+		}
+		//campos[targetX][targetY].colocarPeca(campos[sourceX][sourceY].getComum());
+		//campos[sourceX][sourceY].comerPeca();
 	}
 	
 	void imprimirTabuleiro() {

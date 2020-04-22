@@ -2,7 +2,7 @@ public class main {
 	public static void main(String[] args) {
 		//Recebemos, na entrada, a sequencia de movimentos
 		CSVReader csv = new CSVReader();
-		csv.setDataSource("src/db/arq001.csv");
+		csv.setDataSource("src/db/normalGame.csv");
 		String commands[] = csv.requestCommands();
 		
 		//Geramos o tabuleiro e imprimimos seu estado inicial
