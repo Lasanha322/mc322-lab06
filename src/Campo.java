@@ -1,5 +1,5 @@
 public class Campo {
-	protected int x;
+	protected int x;// define as coordenadas x,y da matriz de campos
 	protected int y;
 	protected boolean preta; //false se for branca B, true se for preta P
 	protected Comum comum;
@@ -11,7 +11,7 @@ public class Campo {
 		comum = null;
 		dama = null;
 	}
-	
+	//setar as coordenadas x, y
 	public void setCoord(int x, int y) {
 		this.x = x;
 		this.y = y;
@@ -37,7 +37,7 @@ public class Campo {
 	public boolean getPreta() {
 		return preta;
 	}
-	
+	//retira uma peça do tabuleiro
 	public void comerPeca() {
 		this.comum = null;
 		this.dama = null;
