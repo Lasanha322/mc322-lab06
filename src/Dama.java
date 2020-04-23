@@ -61,7 +61,6 @@ public class Dama extends Campo {
 					&& camp[this.x + (fatorX)][this.y + (fatorY)].getDama() == null) {
 				fatorX = fatorX + somadorX;
 				fatorY = fatorY + somadorY;
-				muv = verificaMovimento(x, y, camp, fatorX, fatorY);
 			}
 			// se nao estiver vazio, verifica se eh peca adversaria
 			else {
