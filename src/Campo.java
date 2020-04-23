@@ -11,22 +11,28 @@ public class Campo {
 		comum = null;
 		dama = null;
 	}
-		
+	
+	public void setCoord(int x, int y) {
+		this.x = x;
+		this.y = y;
+	}
+
+	public void colocarComum(Comum comum) {
+		this.comum = comum;
+	}
+	
 	public Comum getComum() {
 		return comum;
 	}
 	
-	public void colocarPeca(Comum comum) {
-		this.comum = comum;
+	public void colocarDama(Dama dama) {
+		this.dama = dama;
 	}
 	
 	public Dama getDama() {
 		return dama;
 	}
 	
-	public void colocarDama(Dama dama) {
-		this.dama = dama;
-	}
 	
 	public boolean getPreta() {
 		return preta;

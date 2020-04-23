@@ -5,7 +5,7 @@ public class Dama extends Campo {
 		this.preta = preta;
 	}
 	
-	public boolean MovimentoDama(int x, int y, Campo [][] camp) {
+	public boolean movimentoDama(int x, int y, Campo [][] camp) {
 		boolean muv = false;
 		int fatorX;//direcao em x
 		int fatorY;//direcaoo em y

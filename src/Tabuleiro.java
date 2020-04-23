@@ -19,7 +19,7 @@ public class Tabuleiro {
 			for (int j = 0; j < n; j++) {
 				if ((i+j)%2 == 1) {
 					comum = new Comum(i, j, true);
-					campos[i][j].colocarPeca(comum);
+					campos[i][j].colocarComum(comum);
 				}
 			}
 		}
@@ -29,7 +29,7 @@ public class Tabuleiro {
 			for (int j = 0; j < n; j++) {
 				if ((i+j)%2 == 1) {
 					comum = new Comum(i, j, false);
-					campos[i][j].colocarPeca(comum);
+					campos[i][j].colocarComum(comum);
 				}
 			}
 		}
@@ -39,7 +39,6 @@ public class Tabuleiro {
 		//Processamos o comando de entrada
 		char[] command = commands.toCharArray();
 		int sourceX, sourceY, targetX, targetY;
-		Dama dama;
 		
 		sourceX = n - (command[1] - '0');
 		targetX = n - (command[4] - '0');
@@ -48,7 +47,7 @@ public class Tabuleiro {
 		targetY = command[3] - 'a';
 		
 		if (campos[sourceX][sourceY].getComum() != null && campos[sourceX][sourceY].comum.movimento(targetX, targetY, campos)) {
-			campos[targetX][targetY].colocarPeca(campos[sourceX][sourceY].getComum());
+			campos[targetX][targetY].colocarComum(campos[sourceX][sourceY].getComum());
 			campos[sourceX][sourceY].comerPeca();
 			campos[targetX][targetY].comum.setCoord(targetX, targetY);
 			
@@ -56,12 +55,24 @@ public class Tabuleiro {
 			
 			if (targetX == 0 && campos[targetX][targetY].comum.getPreta() == false) {
 				campos[targetX][targetY].comerPeca();
-				dama = new Dama(targetX, targetY, false);
-				campos[targetX][targetY].colocarDama(dama);				
+				campos[targetX][targetY].colocarDama(new Dama(targetX, targetY, false));				
 			} else if (targetX == 7 && campos[targetX][targetY].comum.getPreta() == true) {
 				campos[targetX][targetY].comerPeca();
-				dama = new Dama(targetX, targetY, true);
-				campos[targetX][targetY].colocarDama(dama);				
+				campos[targetX][targetY].colocarDama(new Dama(targetX, targetY, true));				
+			}
+		} else if (campos[sourceX][sourceY].getDama() != null && campos[sourceX][sourceY].dama.movimentoDama(targetX, targetY, campos)) {
+			campos[targetX][targetY].colocarDama(campos[sourceX][sourceY].getDama());
+			campos[sourceX][sourceY].comerPeca();
+			campos[targetX][targetY].dama.setCoord(targetX, targetY);
+			
+			verificaPecaComer(targetX, targetY, sourceX, sourceY);
+			
+			if (targetX == 0 && campos[targetX][targetY].comum.getPreta() == false) {
+				campos[targetX][targetY].comerPeca();
+				campos[targetX][targetY].colocarDama(new Dama(targetX, targetY, false));				
+			} else if (targetX == 7 && campos[targetX][targetY].comum.getPreta() == true) {
+				campos[targetX][targetY].comerPeca();
+				campos[targetX][targetY].colocarDama(new Dama(targetX, targetY, true));				
 			}
 		}
 	}

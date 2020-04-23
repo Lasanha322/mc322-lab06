@@ -5,11 +5,6 @@ public class Comum extends Campo {
 		this.preta = preta;
 	}
 	
-	public void setCoord(int x, int y) {
-		this.x = x;
-		this.y = y;
-	}
-	
 	public boolean movimento(int x, int y, Campo[][] camp) {
 		boolean muv = false;
 		int fator = 0;
