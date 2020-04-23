@@ -46,15 +46,15 @@ public class Campo {
 	public void mostrarCampo() {
 		if (dama != null) {
 			if (dama.getPreta() == false) {
-				System.out.print("C ");
-			} else {
-				System.out.print("Q ");
-			}
-		} else if (comum != null){
-			if (comum.getPreta() == false) {
 				System.out.print("B ");
 			} else {
 				System.out.print("P ");
+			}
+		} else if (comum != null){
+			if (comum.getPreta() == false) {
+				System.out.print("b ");
+			} else {
+				System.out.print("p ");
 			}
 		} else {
 			System.out.print("- ");

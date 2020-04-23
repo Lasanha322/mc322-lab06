@@ -50,8 +50,8 @@ public class Tabuleiro {
 			campos[targetX][targetY].colocarComum(campos[sourceX][sourceY].getComum());
 			campos[sourceX][sourceY].comerPeca();
 			campos[targetX][targetY].comum.setCoord(targetX, targetY);
-			
-			verificaPecaComer(targetX, targetY, sourceX, sourceY);
+
+			comerPecas(sourceX, sourceY, targetX, targetY);
 			
 			if (targetX == 0 && campos[targetX][targetY].comum.getPreta() == false) {
 				campos[targetX][targetY].comerPeca();
@@ -60,34 +60,35 @@ public class Tabuleiro {
 				campos[targetX][targetY].comerPeca();
 				campos[targetX][targetY].colocarDama(new Dama(targetX, targetY, true));				
 			}
-		} else if (campos[sourceX][sourceY].getDama() != null && campos[sourceX][sourceY].dama.movimentoDama(targetX, targetY, campos)) {
+		} else if (campos[sourceX][sourceY].getDama() != null && campos[sourceX][sourceY].dama.movimento(targetX, targetY, campos)) {
 			campos[targetX][targetY].colocarDama(campos[sourceX][sourceY].getDama());
 			campos[sourceX][sourceY].comerPeca();
 			campos[targetX][targetY].dama.setCoord(targetX, targetY);
 			
-			verificaPecaComer(targetX, targetY, sourceX, sourceY);
-			
-			if (targetX == 0 && campos[targetX][targetY].comum.getPreta() == false) {
-				campos[targetX][targetY].comerPeca();
-				campos[targetX][targetY].colocarDama(new Dama(targetX, targetY, false));				
-			} else if (targetX == 7 && campos[targetX][targetY].comum.getPreta() == true) {
-				campos[targetX][targetY].comerPeca();
-				campos[targetX][targetY].colocarDama(new Dama(targetX, targetY, true));				
-			}
+			comerPecas(sourceX, sourceY, targetX, targetY);
 		}
 	}
 	
-	// verifica se tem uma peca a ser retirada do tabuleiro em uma jogada
-	void verificaPecaComer (int targetX, int targetY, int sourceX, int sourceY) {
-		if( targetX-sourceX == -2 && targetY-sourceY == -2) {
-			campos[targetX+1][targetY+1].comerPeca();
-		} else if( targetX-sourceX == -2 && targetY-sourceY == 2) {
-			campos[targetX+1][targetY-1].comerPeca();
-		} else if( targetX-sourceX == 2 && targetY-sourceY == 2) {
-			campos[targetX-1][targetY-1].comerPeca();
-		} else if( targetX-sourceX == 2 && targetY-sourceY == -2) {
-			campos[targetX-1][targetY+1].comerPeca();
-		}
+	void comerPecas(int sourceX, int sourceY, int targetX, int targetY) {
+		int distX, distY, fatorX, fatorY;
+		
+		distX = targetX - sourceX;
+		if (distX < 0)
+			fatorX = -1;
+		else
+			fatorX = 1;
+		
+		distY = targetY - sourceY;
+		if (distY < 0)
+			fatorY = -1;
+		else
+			fatorY = 1;
+		
+		while(distX != 0 && distY != 0) {
+			campos[targetX-distX][targetY-distY].comerPeca();
+			distX = distX - fatorX;
+			distY = distY - fatorY;
+		}		
 	}
 	
 	void imprimirTabuleiro() {
