@@ -7,14 +7,14 @@ public class Tabuleiro {
 		campos = new Campo[n][n];
 		Comum comum;
 		
-		//Começamos gerando o espaço total
+		//Comecamos gerando o espaco total
 		for (int i = 0; i < n; i++) {
 			for (int j = 0; j < n; j++) {
 				campos[i][j] = new Campo(i, j);
 			}
 		}
 		
-		//Incluimos as peças pretas
+		//Incluimos as pecas pretas
 		for (int i = 0; i < 3; i++) {
 			for (int j = 0; j < n; j++) {
 				if ((i+j)%2 == 1) {
@@ -24,7 +24,7 @@ public class Tabuleiro {
 			}
 		}
 		
-		//Incluimos as peças brancas
+		//Incluimos as pecas brancas
 		for (int i = 5; i < 8; i++) {
 			for (int j = 0; j < n; j++) {
 				if ((i+j)%2 == 1) {
@@ -39,22 +39,34 @@ public class Tabuleiro {
 		//Processamos o comando de entrada
 		char[] command = commands.toCharArray();
 		int sourceX, sourceY, targetX, targetY;
+		Dama dama;
 		
 		sourceX = n - (command[1] - '0');
 		targetX = n - (command[4] - '0');
 		
 		sourceY = command[0] - 'a';
 		targetY = command[3] - 'a';
-		if(campos[sourceX][sourceY].getComum() != null && campos[sourceX][sourceY].comum.movimento(targetX, targetY, campos)) {
+		
+		if (campos[sourceX][sourceY].getComum() != null && campos[sourceX][sourceY].comum.movimento(targetX, targetY, campos)) {
 			campos[targetX][targetY].colocarPeca(campos[sourceX][sourceY].getComum());
 			campos[sourceX][sourceY].comerPeca();
 			campos[targetX][targetY].comum.setCoord(targetX, targetY);
 			
 			verificaPecaComer(targetX, targetY, sourceX, sourceY);
+			
+			if (targetX == 0 && campos[targetX][targetY].comum.getPreta() == false) {
+				campos[targetX][targetY].comerPeca();
+				dama = new Dama(targetX, targetY, false);
+				campos[targetX][targetY].colocarDama(dama);				
+			} else if (targetX == 7 && campos[targetX][targetY].comum.getPreta() == true) {
+				campos[targetX][targetY].comerPeca();
+				dama = new Dama(targetX, targetY, true);
+				campos[targetX][targetY].colocarDama(dama);				
+			}
 		}
 	}
 	
-	// verifica se tem uma peça a ser retirada do tabuleiro em uma jogada
+	// verifica se tem uma peca a ser retirada do tabuleiro em uma jogada
 	void verificaPecaComer (int targetX, int targetY, int sourceX, int sourceY) {
 		if( targetX-sourceX == -2 && targetY-sourceY == -2) {
 			campos[targetX+1][targetY+1].comerPeca();
@@ -77,6 +89,7 @@ public class Tabuleiro {
 			}
 			System.out.println();
 		}
+		
 		//Na ultima linha, imprimimos as letras
 		System.out.println("  a b c d e f g h ");
 		System.out.println();

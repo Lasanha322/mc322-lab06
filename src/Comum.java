@@ -1,5 +1,4 @@
 public class Comum extends Campo {
-	protected Dama dama;
 	
 	public Comum(int x, int y, boolean preta) {
 		super(x, y);

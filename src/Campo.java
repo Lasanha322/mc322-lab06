@@ -11,11 +11,7 @@ public class Campo {
 		comum = null;
 		dama = null;
 	}
-	
-	public boolean getPreta() {
-		return preta;
-	}
-	
+		
 	public Comum getComum() {
 		return comum;
 	}
@@ -24,20 +20,38 @@ public class Campo {
 		this.comum = comum;
 	}
 	
+	public Dama getDama() {
+		return dama;
+	}
+	
+	public void colocarDama(Dama dama) {
+		this.dama = dama;
+	}
+	
+	public boolean getPreta() {
+		return preta;
+	}
+	
 	public void comerPeca() {
 		this.comum = null;
+		this.dama = null;
 	}
 	
 	public void mostrarCampo() {
-		if (comum == null) {
-			System.out.print("- ");
-		} else {
-			if(comum.preta == false) {
-				System.out.print("B ");
+		if (dama != null) {
+			if (dama.getPreta() == false) {
+				System.out.print("C ");
+			} else {
+				System.out.print("Q ");
 			}
-			else {
+		} else if (comum != null){
+			if (comum.getPreta() == false) {
+				System.out.print("B ");
+			} else {
 				System.out.print("P ");
 			}
+		} else {
+			System.out.print("- ");
 		}
 	}
 }
