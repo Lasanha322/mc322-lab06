@@ -82,6 +82,23 @@ public class Dama extends Campo {
 						}
 					}
 				}
+				//uma dama come outra dama
+				if (camp[this.x + (fatorX)][this.y + (fatorY)].getComum() == null
+						&& camp[this.x + (fatorX)][this.y + (fatorY)].getDama() != null) {
+
+					if (camp[this.x + (fatorX)][this.y + (fatorY)].dama.preta != preta) {
+
+						// se for peca adversaria verica se o campo apos o adversario esta vazio
+						if (camp[this.x + (fatorX + somadorX)][this.y + (fatorY + somadorY)].getComum() == null
+								&& camp[this.x + (fatorX)][this.y + (fatorY)].getDama() == null) {
+							// se este campo for destido final retorna jogada valida
+
+							if (this.x + (fatorX + somadorX) == x && this.y + (fatorY + somadorY) == y) {
+								return true;
+							}
+						}
+					}
+				}
 			}
 		}
 		// se a peca passar por todos os campos e a posicao destino ser igual a
