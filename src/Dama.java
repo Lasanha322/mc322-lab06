@@ -13,30 +13,17 @@ public class Dama extends Campo {
 		//ideia de quadrante, pense que a peca esta no centro e 
 		//o x e y vao indicar para que direcao esta indo a peca
 		
-		if (y > this.y) {
-			if (x > this.x) {
-				fatorX = 1;
-				fatorY = 1;
-				muv = verificaMovimento(x, y, camp, fatorX, fatorY);
-			} else if (x < this.x) {
-				fatorX = -1;
-				fatorY = 1;
-				muv = verificaMovimento(x, y, camp, fatorX, fatorY);
-			}
-		}
+		if (x > this.x)
+			fatorX = 1;
+		else
+			fatorX = -1;
 		
-		if (y < this.y) {
-			if (x > this.x) {
-				fatorX = 1;
-				fatorY = -1;
-				muv = verificaMovimento(x, y, camp, fatorX, fatorY);
-			} else if(x < this.x) {
-				fatorX = -1;
-				fatorY = -1;
-				muv = verificaMovimento(x, y, camp, fatorX, fatorY);
-			}
-		}
-		
+		if (y > this.y)
+			fatorY = 1;
+		else
+			fatorY = -1;
+
+		muv = verificaMovimento(x, y, camp, fatorX, fatorY);		
 		return muv;
 	}
 	
@@ -55,21 +42,21 @@ public class Dama extends Campo {
 		
 		//verifica cada campo ate chegar na posicao final desejada
 		while(x != this.x+fatorX && y != this.y+fatorY) {
-			// Se o a proximo campo estiver vazio ele chama a funcao novamente
-			if(camp[this.x+fatorX][this.y+fatorY].getComum()==null && camp[this.x+fatorX][this.y+fatorY].getDama() == null) {
+			// Se o a proximo campo estiver vazio, ele chama a funcao novamente
+			if (camp[this.x+fatorX][this.y+fatorY].getComum()==null && camp[this.x+fatorX][this.y+fatorY].getDama() == null) {
 				fatorX = fatorX + somadorX;
 				fatorY = fatorY + somadorY;
-				muv = verificaMovimento(x, y, camp, fatorX, fatorY);
-			} 
-			else //se nao estiver vazio, verifica se eh peca adversaria 
-			{
-
-				if(camp[this.x+fatorX][this.y+fatorY].comum.getPreta()!=preta) {
+			} else {
+				 //se nao estiver vazio, verifica se eh peca adversaria 
+				if(camp[this.x+fatorX][this.y+fatorY].getComum() != null && 
+					camp[this.x+fatorX][this.y+fatorY].comum.getPreta() != this.preta ||
+					camp[this.x+fatorX][this.y+fatorY].getDama() != null &&
+					camp[this.x+fatorX][this.y+fatorY].dama.getPreta() != this.preta) {
+					fatorX = fatorX + somadorX;
+					fatorY = fatorY + somadorY;					
 					//se for peca adversaria, verifica se o campo apos o adversario esta vazio
-					if(camp[this.x+fatorX+somadorX][this.y+fatorY+somadorY].getComum()==null) {
-
-						fatorX = fatorX + somadorX;
-						fatorY = fatorY + somadorY;
+					if(camp[this.x+fatorX][this.y+fatorY].getComum() == null &&
+							camp[this.x+fatorX][this.y+fatorY].getDama() == null ) {
 						//se este campo for o destino final, retorna que eh jogada valida
 						if(this.x+fatorX == x && this.y+fatorY == y) {
 							muv=true;
@@ -81,8 +68,8 @@ public class Dama extends Campo {
 		
 		//se a peca passar por todos os campos e a posicao destino ser igual a 
 		//verificada, verifica se o espaco esta disponivel
-		if(x==fatorX && y==fatorY){
-			if(camp[x][y].getComum()==null && camp[x][y].getDama() == null) {
+		if(x== this.x + fatorX && y==this.y + fatorY){
+			if(camp[x][y].getComum() == null && camp[x][y].getDama() == null) {
 				muv=true;
 			}		
 		}
