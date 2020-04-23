@@ -1,4 +1,3 @@
-
 public class Dama extends Campo {
 
 	public Dama(int x, int y, boolean preta) {
@@ -56,46 +55,35 @@ public class Dama extends Campo {
 			somadorY = fatorY / fatorY;
 
 		// verifica cada campo ate chegar na posicao final desejada
-		while (x != fatorX && y != fatorY) {
+		while (x != (this.x + fatorX) && y != (this.y + fatorY)) {
 			// Se o a proximo campo estiver vazio ele chama a funcao novamente
-			if (camp[this.x + (fatorX)][this.y + (fatorY)].getComum() == null) {
-
+			if (camp[this.x + (fatorX)][this.y + (fatorY)].getComum() == null
+					&& camp[this.x + (fatorX)][this.y + (fatorY)].getDama() == null) {
 				fatorX = fatorX + somadorX;
 				fatorY = fatorY + somadorY;
 				muv = verificaMovimento(x, y, camp, fatorX, fatorY);
 			}
 			// se nao estiver vazio, verifica se eh peca adversaria
 			else {
-				if (camp[this.x + (fatorX)][this.y + (fatorY)].getComum() != null
-						&& camp[this.x + (fatorX)][this.y + (fatorY)].getDama() == null) {
-
+				if (camp[this.x + (fatorX)][this.y + (fatorY)].getComum() != null) {
 					if (camp[this.x + (fatorX)][this.y + (fatorY)].comum.preta != preta) {
-
-						// se for peca adversaria verica se o campo apos o adversario esta vazio
+						// se for peca adversaria verica se o campo apos o adversario esta vazio, se sim
+						// movimento valido
 						if (camp[this.x + (fatorX + somadorX)][this.y + (fatorY + somadorY)].getComum() == null
 								&& camp[this.x + (fatorX)][this.y + (fatorY)].getDama() == null) {
-							// se este campo for destido final retorna jogada valida
-
-							if (this.x + (fatorX + somadorX) == x && this.y + (fatorY + somadorY) == y) {
-								return true;
-							}
+							fatorX = fatorX + somadorX;
+							fatorY = fatorY + somadorY;
+							muv = true;
 						}
 					}
-				}
-				//uma dama come outra dama
-				if (camp[this.x + (fatorX)][this.y + (fatorY)].getComum() == null
-						&& camp[this.x + (fatorX)][this.y + (fatorY)].getDama() != null) {
-
+				} else {
 					if (camp[this.x + (fatorX)][this.y + (fatorY)].dama.preta != preta) {
-
 						// se for peca adversaria verica se o campo apos o adversario esta vazio
 						if (camp[this.x + (fatorX + somadorX)][this.y + (fatorY + somadorY)].getComum() == null
 								&& camp[this.x + (fatorX)][this.y + (fatorY)].getDama() == null) {
-							// se este campo for destido final retorna jogada valida
-
-							if (this.x + (fatorX + somadorX) == x && this.y + (fatorY + somadorY) == y) {
-								return true;
-							}
+							fatorX = fatorX + somadorX;
+							fatorY = fatorY + somadorY;
+							muv = true;
 						}
 					}
 				}
@@ -103,7 +91,6 @@ public class Dama extends Campo {
 		}
 		// se a peca passar por todos os campos e a posicao destino ser igual a
 		// verificada, verifica se o espaco esta disponivel
-
 		if (x == (this.x + fatorX) && y == (this.y + fatorY)) {
 			if (camp[x][y].getComum() == null && camp[x][y].getDama() == null) {
 				muv = true;
@@ -112,4 +99,3 @@ public class Dama extends Campo {
 		return muv;
 	}
 }
-
