@@ -4,13 +4,12 @@ public class Comum extends Campo {
 		super(x, y);
 		this.preta = preta;
 	}
-	
+	//retorna true se o movimento requerido √© possivel e compativel com o tipo de pe√ßa comum
 	public boolean movimento(int x, int y, Campo[][] camp) {
 		boolean muv = false;
 		int fator = 0;
-		
+		//pela cor da pe√ßa definimos o sentindo que ela pode movimentar
 		if (camp[this.x][this.y].getComum() != null) {
-			//Agora, a gente verifica se a peca sobe ou desce
 			if (getPreta() == true) {
 				fator = 1;
 				muv = verificaMovimento (x, y, camp, fator);
@@ -21,10 +20,10 @@ public class Comum extends Campo {
 		}
 		return muv;
 	}
-	
+	//retorna se o movimento da pe√ßa foi possivel
 	public boolean verificaMovimento (int x, int y, Campo [][] camp, int lado) {
 		boolean muv = false;
-		// verifica se movimento de 1 casa È verdadeiro
+		// verifica se movimento de 1 casa √© verdadeiro
 		if(x==(this.x+lado)) {
 			if(y==(this.y+1) || y==(this.y-1) ) {
 				if(camp[x][y].getComum() == null) {
@@ -32,8 +31,7 @@ public class Comum extends Campo {
 				}
 			}
 		}
-		
-		//verifica se o movimento de 2 espaÁo È possivel e se entre eles tem uma peÁa != da propria			
+		//verifica se o movimento de 2 casas e se entre eles tem uma pe√ßa != da propria			
 		if(x==(this.x+(2*lado))) {
 			if(y==(this.y+2) ) {
 				if(camp[x][y].getComum() == null) {
@@ -43,7 +41,6 @@ public class Comum extends Campo {
 					}
 				}
 			}
-			
 			if(y==(this.y-2) ) {
 				if(camp[x][y].getComum() == null) {
 					if(camp[this.x+lado][this.y-1].getComum() != null && camp[this.x+lado][this.y-1].comum.getPreta() != this.preta
