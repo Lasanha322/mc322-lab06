@@ -7,11 +7,7 @@ public class Dama extends Campo {
 	
 	public boolean movimento(int x, int y, Campo [][] camp) {
 		boolean muv = false;
-		int fatorX;//direcao em x
-		int fatorY;//direcao em y
-		//definindo a direcao do movimento
-		//ideia de quadrante, pense que a peca esta no centro e 
-		//o x e y vao indicar para que direcao esta indo a peca
+		int fatorX, fatorY; //Anotam a direcao do movimento
 		
 		if (x > this.x)
 			fatorX = 1;
@@ -29,9 +25,10 @@ public class Dama extends Campo {
 	
 	public boolean verificaMovimento (int x, int y, Campo [][] camp, int fatorX, int fatorY) {
 		boolean muv = false;
-		int somadorX, somadorY;
+		int somadorX, somadorY; //Anotam a direcao dos movimentos, permite mexer no fatorX e fatorY
+		
 		if (fatorX < 0)
-			somadorX = -1; //somador para ir para o proximo campo
+			somadorX = -1;
 		else 
 			somadorX = 1;
 		
@@ -40,24 +37,24 @@ public class Dama extends Campo {
 		else 
 			somadorY = 1;
 		
-		//verifica cada campo ate chegar na posicao final desejada
+		//Pro trajeto dado, verificamos todos os campos nesse caminho
 		while(x != this.x+fatorX && y != this.y+fatorY) {
-			// Se o a proximo campo estiver vazio, ele chama a funcao novamente
+			//Se o campo em frente estiver vazio, incrementamos as variaveis
 			if (camp[this.x+fatorX][this.y+fatorY].getComum()==null && camp[this.x+fatorX][this.y+fatorY].getDama() == null) {
 				fatorX = fatorX + somadorX;
 				fatorY = fatorY + somadorY;
 			} else {
-				 //se nao estiver vazio, verifica se eh peca adversaria 
+				 //Se tiver peca no campo, verificamos se eh peca adversaria
 				if(camp[this.x+fatorX][this.y+fatorY].getComum() != null && 
 					camp[this.x+fatorX][this.y+fatorY].comum.getPreta() != this.preta ||
 					camp[this.x+fatorX][this.y+fatorY].getDama() != null &&
 					camp[this.x+fatorX][this.y+fatorY].dama.getPreta() != this.preta) {
 					fatorX = fatorX + somadorX;
 					fatorY = fatorY + somadorY;					
-					//se for peca adversaria, verifica se o campo apos o adversario esta vazio
+					//Se for, verificamos se tem um campo livre depois da peca adversaria
 					if(camp[this.x+fatorX][this.y+fatorY].getComum() == null &&
-							camp[this.x+fatorX][this.y+fatorY].getDama() == null ) {
-						//se este campo for o destino final, retorna que eh jogada valida
+					   camp[this.x+fatorX][this.y+fatorY].getDama() == null ) {
+						//Se o movimento acabar nesse espaco livre, validamos o movimento
 						if(this.x+fatorX == x && this.y+fatorY == y) {
 							muv=true;
 						}
@@ -66,12 +63,9 @@ public class Dama extends Campo {
 			}
 		}
 		
-		//se a peca passar por todos os campos e a posicao destino ser igual a 
-		//verificada, verifica se o espaco esta disponivel
-		if(x== this.x + fatorX && y==this.y + fatorY){
-			if(camp[x][y].getComum() == null && camp[x][y].getDama() == null) {
-				muv=true;
-			}		
+		//Apos verificamos todos os campos no trajeto, verificamos se o destino final esta livre
+		if(camp[x][y].getComum() == null && camp[x][y].getDama() == null) {
+			muv=true;
 		}
 		
 		return muv;
