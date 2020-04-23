@@ -53,7 +53,6 @@ public class Dama extends Campo {
 
 		// verifica cada campo ate chegar na posicao final desejada
 		while (x != (this.x + fatorX) && y != (this.y + fatorY)) {
-			// Se o a proximo campo estiver vazio ele chama a funcao novamente
 			if (camp[this.x + (fatorX)][this.y + (fatorY)].getComum() != null
 					&& camp[this.x + (fatorX)][this.y + (fatorY)].comum.preta != preta
 					|| camp[this.x + (fatorX)][this.y + (fatorY)].getDama() != null
