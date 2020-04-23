@@ -64,8 +64,9 @@ public class Dama extends Campo {
 					}
 				}
 			}
+			fatorX = fatorX + somadorX;
+			fatorY = fatorY + somadorY;
 		}
-		
 		//se a peca passar por todos os campos e a posicao destino ser igual a 
 		//verificada, verifica se o espaco esta disponivel
 		if(x== this.x + fatorX && y==this.y + fatorY){
