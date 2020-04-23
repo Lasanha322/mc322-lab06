@@ -1,3 +1,4 @@
+
 public class Dama extends Campo {
 
 	public Dama(int x, int y, boolean preta) {
@@ -5,7 +6,7 @@ public class Dama extends Campo {
 		this.preta = preta;
 	}
 	
-	public boolean movimentoDama(int x, int y, Campo [][] camp) {
+	public boolean MovimentoDama(int x, int y, Campo [][] camp) {
 		boolean muv = false;
 		int fatorX;//direcao em x
 		int fatorY;//direcaoo em y
@@ -58,7 +59,10 @@ public class Dama extends Campo {
 		while(x!=fatorX && y!=fatorY ) {
 			// Se o a proximo campo estiver vazio ele chama a funcao novamente
 			if(camp[this.x+(fatorX)][this.y+(fatorY)].getComum()==null) {
-				verificaMovimento(x,y,camp,fatorX+somadorX,fatorY+somadorY);
+				
+				fatorX=fatorX+somadorX;
+				fatorY=fatorY+somadorY;
+				muv = verificaMovimento(x,y,camp,fatorX,fatorY);
 			}
 			//se nao estiver vazio, verifica se eh peca adversaria
 			else {
@@ -75,12 +79,14 @@ public class Dama extends Campo {
 		}
 		//se a peca passar por todos os campos e a posicao destino ser igual a 
 		//verificada, verifica se o espaco esta disponivel
-		if(x==fatorX && y==fatorY){
+		
+		if(x==(this.x+fatorX) && y==(this.y+fatorY)){
 			if(camp[x][y].getComum()==null && camp[x][y].getDama() == null) {
 				muv=true;
 			}		
 		}
-		
+		System.out.println("brun"+ muv);
 		return muv;
 	}
 }
+
