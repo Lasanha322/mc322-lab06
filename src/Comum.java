@@ -31,18 +31,19 @@ public class Comum extends Campo {
 				}
 			}
 		}
-		//verifica se o movimento de 2 casas e se entre eles tem uma peça != da propria			
-		if(x==(this.x+(2*lado))) {
-			if(y==(this.y+2) ) {
-				if(camp[x][y].getComum() == null) {
+		//verifica se o movimento de 2 casas e se entre eles tem uma peça != da propria	
+		if(camp[x][y].getComum() == null && camp[x][y].getDama() == null) {
+			if(x==(this.x+(2*lado))) {
+				// se o movimento for para direita
+				if(y==(this.y+2) ) {
+					//se a peça a ser comida é do adversario então o movimento é possivel
 					if(camp[this.x+lado][this.y+1].getComum() != null && camp[this.x+lado][this.y+1].comum.getPreta() != this.preta
 					|| camp[this.x+lado][this.y+1].getDama() != null && camp[this.x+lado][this.y+1].dama.getPreta() != this.preta){
 						muv=true;
 					}
 				}
-			}
-			if(y==(this.y-2) ) {
-				if(camp[x][y].getComum() == null) {
+				// se o movimento for para esquerda
+				if(y==(this.y-2) ) {
 					if(camp[this.x+lado][this.y-1].getComum() != null && camp[this.x+lado][this.y-1].comum.getPreta() != this.preta
 					|| camp[this.x+lado][this.y-1].getDama() != null && camp[this.x+lado][this.y-1].dama.getPreta() != this.preta){
 						muv=true;
@@ -50,7 +51,6 @@ public class Comum extends Campo {
 				}
 			}
 		}
-		
 		return muv;
 	}
 }
