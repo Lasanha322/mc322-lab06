@@ -43,6 +43,7 @@ public class Comum extends Campo {
 					}
 				}
 			}
+			
 			if(y==(this.y-2) ) {
 				if(camp[x][y].getComum() == null) {
 					if(camp[this.x+lado][this.y-1].getComum() != null && camp[this.x+lado][this.y-1].comum.getPreta() != this.preta

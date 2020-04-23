@@ -1,14 +1,21 @@
-a3:a4,b6:b5,c3:d3,d6:e6,d2:e3,e7:f6,g3:h4,h6:g5,b6:a5,a3:b4,h4:g3,g5:h6,h4:f6,a5:c3,d6:e5,e3:d4
-Casos testados:
-Movimento vertical na Branca
-Movimento vertical na Preta
-Movimento horizontal na Branca
-Movimento horizontal na Preta
-Movimento bloqueado na Branca por outra Branca
-Movimento bloqueado na Preta por outra Preta
-Movimento pra trás na Branca Comum
-Movimento pra trás na Preta Comum
-Movimento bloqueado na Branca por uma Preta
-Movimento bloqueado na Preta por uma Branca
-Movimento fora de turno da Preta
-Movimento fora de turno da Branca
+a3:a4,b6:b5,c3:d3,d6:e6,d2:e3,e7:f6,g3:h4,h6:g5,a3:b4,b6:a5,h4:g3,g5:h6,h4:f6,a5:c3,d6:e5,e3:d4,d4:e5,d6:e5
+Legenda das jogadas testadas:
+0) Tabuleiro inicial
+1) Movimento vertical na Branca
+2) Movimento vertical na Preta
+3) Movimento horizontal na Branca
+4) Movimento horizontal na Preta
+5) Movimento bloqueado na Branca por outra Branca
+6) Movimento bloqueado na Preta por outra Preta
+7) Movimento válido da Branca
+8) Movimento válido da Preta
+9) Movimento válido da Branca
+10) Movimento válido da Preta
+11) Movimento pra trás na Branca Comum
+12) Movimento pra trás na Preta Comum
+13) Movimento bloqueado na Branca por uma Preta
+14) Movimento bloqueado na Preta por uma Branca
+15) Movimento fora de turno da Preta
+16) Movimento válido da Branca
+17) Movimento fora de turno da Branca
+18) Movimento válido da Preta

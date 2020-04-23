@@ -1,7 +1,7 @@
 public class Campo {
-	protected int x;// coordenadas x,y na matriz de campos
+	protected int x;
 	protected int y;
-	protected boolean preta;// false se for branca B, true se for preta P
+	protected boolean preta; //false se for branca B, true se for preta P
 	protected Comum comum;
 	protected Dama dama;
 	
@@ -11,7 +11,7 @@ public class Campo {
 		comum = null;
 		dama = null;
 	}
-	// seta as coordenadas 
+	
 	public void setCoord(int x, int y) {
 		this.x = x;
 		this.y = y;
@@ -33,15 +33,16 @@ public class Campo {
 		return dama;
 	}
 	
+	
 	public boolean getPreta() {
 		return preta;
 	}
-	//retira a peca do tabuleiro
+	
 	public void comerPeca() {
 		this.comum = null;
 		this.dama = null;
 	}
-	//imprime o tipo de peca no tabuleiro
+	
 	public void mostrarCampo() {
 		if (dama != null) {
 			if (dama.getPreta() == false) {
