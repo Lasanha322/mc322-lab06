@@ -109,7 +109,6 @@ public class Dama extends Campo {
 				muv = true;
 			}
 		}
-		System.out.println("brun" + muv);
 		return muv;
 	}
 }
