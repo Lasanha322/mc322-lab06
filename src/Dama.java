@@ -18,7 +18,7 @@ public class Dama extends Campo {
 			fatorY = 1;
 		else
 			fatorY = -1;
-
+		
 		muv = verificaMovimento(x, y, camp, fatorX, fatorY);		
 		return muv;
 	}
@@ -32,7 +32,7 @@ public class Dama extends Campo {
 		else 
 			somadorX = 1;
 		
-		if(fatorY < 0)
+		if (fatorY < 0)
 			somadorY= -1;
 		else 
 			somadorY = 1;
@@ -67,6 +67,10 @@ public class Dama extends Campo {
 		if(camp[x][y].getComum() == null && camp[x][y].getDama() == null) {
 			muv=true;
 		}
+		
+		//Por fim, verificamos se o movimento eh numa diagonal valida
+		if((x-this.x)/(y-this.y) != 1 && (x-this.x)/(y-this.y) != -1)
+			muv = false;
 		
 		return muv;
 	}

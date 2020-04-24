@@ -102,6 +102,7 @@ public class Tabuleiro {
 			//Verificamos se eh jogada sucessiva de uma peca que jah comeu
 			if (sourceX == comeuX && sourceY == comeuY) {
 				//Soh jogamos se ele for comer uma peca
+				System.out.println("comeu, joga dnv");
 				if(comerPecas(sourceX, sourceY, targetX, targetY)) {
 					comeuX = targetX;
 					comeuY = targetY;
